@@ -127,13 +127,14 @@ def programa_forca(lista):
     continuar = True
     while continuar == True:
         imprimir_forca(lista_erros)
+        print(f'As letras já usadas foram: {letras_usadas}')
         exibir_palavra(palavra_escondida)
         letra_escolhida = perguntar_letra()
         limpar_console()
         testar_letra(letra_escolhida, item_aleatorio,
                      letras_usadas, palavra_escondida, lista_erros)
         continuar = tela_de_vitoria(
-            palavra_escondida, item_aleatorio, continuar)
+            palavra_escondida, item_aleatorio, continuar, lista_erros)
         if continuar == False:
             break
         continuar = game_over(item_aleatorio, lista_erros, continuar)
@@ -201,8 +202,9 @@ def imprimir_forca(lista_erros):
 # Tela de vitoria
 
 
-def tela_de_vitoria(palavra_escondida, item_aleatorio, continuar):
+def tela_de_vitoria(palavra_escondida, item_aleatorio, continuar, lista_erros):
     if '_' not in palavra_escondida:
+        imprimir_forca(lista_erros)
         print(f'Voce ganhou! a palavra secreta era {item_aleatorio}')
         continuar = False
     else:
